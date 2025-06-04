@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  trading-asst:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ENVIRONMENT=development
+      - PORT=8080
+      - HOST=0.0.0.0
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - /app/.venv/  # Don't sync virtual environment
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: pytest -v --cov=trading_asst
+    volumes:
+      - .:/app
+      - /app/.venv/
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ENVIRONMENT=test
+    depends_on:
+      trading-asst:
+        condition: service_healthy 
