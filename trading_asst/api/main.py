@@ -89,20 +89,6 @@ async def cloud_run_health_check():
         "timestamp": datetime.now().isoformat()
     }
 
-@app.get("/")
-async def root():
-    """Root endpoint."""
-    return {
-        "service": "Trading Assistant API",
-        "status": "running",
-        "version": "1.0.0",
-        "endpoints": {
-            "health": "/health",
-            "api_health": "/api/v1/health",
-            "analyze": "/api/v1/analyze",
-            "quick_analysis": "/api/v1/quick-analysis"
-        }
-    }
 
 if __name__ == "__main__":
     import uvicorn

@@ -22,14 +22,21 @@ class Settings(BaseSettings):
     GCS_BUCKET_NAME: Optional[str] = None
     
     # Model Configuration
-    DEFAULT_LLM_MODEL: str = "gpt-4"
+    DEFAULT_LLM_MODEL: str = "gpt-4o-mini"
     EMBEDDING_MODEL: str = "text-embedding-ada-002"
     
     # Agent Configuration
-    FUNDAMENTAL_AGENT_MODEL: str = "gpt-4"
-    TECHNICAL_AGENT_MODEL: str = "gpt-4"
-    NEWS_AGENT_MODEL: str = "claude-v1"
-    SENTIMENT_AGENT_MODEL: str = "text-bison@001"
+    # FUNDAMENTAL_AGENT_MODEL: str = "gpt-4"
+    # TECHNICAL_AGENT_MODEL: str = "gpt-4"
+    # NEWS_AGENT_MODEL: str = "claude-v1"
+    # SENTIMENT_AGENT_MODEL: str = "text-bison@001"
+
+    FUNDAMENTAL_AGENT_MODEL: str = "gpt-4o-mini"
+    TECHNICAL_AGENT_MODEL: str = "gpt-4o-mini"
+    #NEWS_AGENT_MODEL: str = "claude-v1"
+    NEWS_AGENT_MODEL: str = "gpt-4o-mini"
+    #SENTIMENT_AGENT_MODEL: str = "text-bison@001"
+    SENTIMENT_AGENT_MODEL: str = "gpt-4o-mini"
     
     # Cache Configuration
     CACHE_TTL: int = 3600  # 1 hour
